@@ -170,7 +170,7 @@ public class ViewStudentPanel extends JPanel {
 		lblContactNumber.setBounds(309, 300+150, 274, 48);
 		add(lblContactNumber);
 		
-		JLabel lblCource = new JLabel("Cource  ");
+		JLabel lblCource = new JLabel("Course  ");
 		lblCource.setOpaque(true);
 		lblCource.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCource.setFont(new Font("Segoe UI Historic", Font.PLAIN, 20));

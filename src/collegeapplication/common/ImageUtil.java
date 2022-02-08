@@ -5,7 +5,6 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class ImageUtil {
 
     public static BufferedImage toBufferedImage(Image image)

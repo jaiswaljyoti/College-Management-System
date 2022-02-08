@@ -40,6 +40,7 @@ import net.proteanit.sql.DbUtils;
 
 
 
+
 @SuppressWarnings("serial")
 public class SearchPanel extends JPanel implements ActionListener {
 
@@ -301,7 +302,7 @@ public class SearchPanel extends JPanel implements ActionListener {
 		panel.add(studentandfacultycombo);
 		
 		String courcename[]=new CourceData().getCourceName();
-		courcename[0]="All Cources";
+		courcename[0]="All Courses";
 		courcenamecombo = new JComboBox<String>(courcename);
 		
 		courcenamecombo.setFont(new Font("Segoe UI", Font.PLAIN, 18));

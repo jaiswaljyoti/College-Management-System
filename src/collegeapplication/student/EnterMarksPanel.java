@@ -162,7 +162,7 @@ public class EnterMarksPanel extends JPanel implements ActionListener
 		    subjectnamecombo.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		    selectcourcepanel.add(subjectnamecombo);
 		    
-		    label1 = new JLabel("Select Cource   :");
+		    label1 = new JLabel("Select Course   :");
 		    label1.setHorizontalAlignment(SwingConstants.RIGHT);
 		    label1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		    label1.setBounds(10, -1, 200, 40);

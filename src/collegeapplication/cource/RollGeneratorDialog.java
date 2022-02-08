@@ -20,6 +20,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 
+
 @SuppressWarnings("serial")
 public class RollGeneratorDialog extends JDialog implements ActionListener
 {

@@ -21,7 +21,6 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.border.EmptyBorder;
 
-
 @SuppressWarnings("serial")
 public class CourcePanel extends JPanel implements ActionListener {
 	private JScrollPane scrollPane;
@@ -73,7 +72,7 @@ public class CourcePanel extends JPanel implements ActionListener {
 		add(panel);
 		panel.setLayout(null);
 
-		JLabel allCourceslbl = new JLabel("All Cources");
+		JLabel allCourceslbl = new JLabel("All Courses");
 		allCourceslbl.setForeground(new Color(255, 255, 255));
 		allCourceslbl.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		allCourceslbl.setBounds(10, 65, 321, 34);
@@ -91,7 +90,7 @@ public class CourcePanel extends JPanel implements ActionListener {
 		rollgenerator.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		rollgenerator.addActionListener(this);
 
-		addcource = new JButton("Add Cource");
+		addcource = new JButton("Add Course");
 		addcource.setBounds(939, 135, 147, 33);
 		panel.add(addcource);
 		addcource.setBorder(new EmptyBorder(0, 0, 0, 0));

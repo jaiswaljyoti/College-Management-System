@@ -31,6 +31,7 @@ import collegeapplication.student.StudentMain;
 import net.proteanit.sql.DbUtils;
 
 
+
 @SuppressWarnings("serial")
 public class SubjectPanel extends JPanel implements ActionListener
 {
@@ -147,7 +148,7 @@ public class SubjectPanel extends JPanel implements ActionListener
 		headerlabel.setOpaque(true);
 		add(headerlabel);
 		
-		selectcourcelabel = new JLabel("Select Cource  ");
+		selectcourcelabel = new JLabel("Select Course  ");
 		selectcourcelabel.setHorizontalAlignment(SwingConstants.LEFT);
 		selectcourcelabel.setForeground(Color.DARK_GRAY);
 		selectcourcelabel.setFont(new Font("Segoe UI", Font.PLAIN, 20));

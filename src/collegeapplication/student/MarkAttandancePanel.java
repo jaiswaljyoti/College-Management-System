@@ -37,14 +37,10 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
 import collegeapplication.admin.AdminMain;
-import collegeapplication.common.Notification;
-import collegeapplication.common.NotificationData;
-import collegeapplication.common.TimeUtil;
 import collegeapplication.cource.CourceData;
 import collegeapplication.faculty.FacultyMain;
 import collegeapplication.subject.SubjectData;
-
-
+ 
 @SuppressWarnings("serial")
 public class MarkAttandancePanel extends JPanel implements ActionListener {
 
@@ -129,7 +125,7 @@ public class MarkAttandancePanel extends JPanel implements ActionListener {
 		add(label);
 		
 		
-		label1 = new JLabel("Cource Name   :");
+		label1 = new JLabel("Course Name   :");
 		label1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label1.setForeground(Color.DARK_GRAY);
 		label1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -487,15 +483,6 @@ public class MarkAttandancePanel extends JPanel implements ActionListener {
 		}
 		if(result==1)
 		{
-			Notification n=new Notification();
-			n.setUserProfile("Student");
-			n.setUserId("Admin");
-			n.setCourceCode(a.getCourceCode());
-			n.setSemorYear(a.getSemorYear());
-			n.setTitle("Attandance");
-			n.setMessage("Your "+new SubjectData().getSubjectName(a.getSubjectCode())+" subject attandance on "+a.getAttandanceDate()+" is updated.");
-			n.setTime(TimeUtil.getCurrentTime());
-			new NotificationData().addNotification(n);
 			JOptionPane.showMessageDialog(null, "Attandance Submitted");
 			scrollPane.setVisible(false);
 			submitbutton.setVisible(false);

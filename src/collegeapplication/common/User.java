@@ -9,6 +9,7 @@ import collegeapplication.faculty.FacultyData;
 import collegeapplication.student.StudentData;
 
 
+
 class User extends Cource
 {
 	

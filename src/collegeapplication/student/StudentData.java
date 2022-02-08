@@ -12,12 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import collegeapplication.common.DataBaseConnection;
-import collegeapplication.common.Notification;
-import collegeapplication.common.NotificationData;
-import collegeapplication.common.TimeUtil;
 import collegeapplication.subject.SubjectData;
-
-
 
 public class StudentData 
 {
@@ -34,21 +29,6 @@ public class StudentData
 		String query="insert into students values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try
 		{
-		
-			//Adding notification of new student
-			{
-				Notification n=new Notification();
-				n.setUserProfile("Student");
-				n.setCourceCode(s.getCourceCode());
-				n.setSemorYear(s.getSemorYear());
-				n.setTitle("New Student");
-				n.setUserId(s.generateUserId());
-				n.setMessage(s.getFullName()+" ("+s.getRollNumber()+") has taken admission in your class.");
-				n.setTime(TimeUtil.getCurrentTime());
-				new NotificationData().addNotification(n);
-				n.setUserProfile("Faculty");
-				new NotificationData().addNotification(n);
-			}
 			
 			PreparedStatement pr=con.prepareStatement(query);
 			pr.setString(1, s.getCourceCode());
@@ -134,60 +114,6 @@ public class StudentData
 		return result;
 		
 	}
-	public int deleteChatHistory(Student s)
-	{
-		int result=0;
-		String query="delete from chat where touserid='"+s.getUserId()+"' or fromuserid='"+s.getUserId()+"'";
-		try
-		{
-			PreparedStatement pr=con.prepareStatement(query);
-			result=pr.executeUpdate();
-			if(result>0)
-			{
-				this.reArrangeChatSrNoColumn();
-			}
-		}
-		catch(Exception exp)
-		{
-			exp.printStackTrace();
-		}
-		return result;
-	}
-	public void reArrangeChatSrNoColumn()
-	{
-		
-		try
-		{
-			String query="alter table chat drop sr_no;";
-			PreparedStatement pr=con.prepareStatement(query);
-			pr.executeUpdate();
-			query="alter table chat add sr_no int primary key auto_increment first";
-			pr=con.prepareStatement(query);
-			pr.executeUpdate();
-			
-		}
-		catch(Exception exp)
-		{
-			exp.printStackTrace();
-		}
-	}
-	public int deleteNotificationHistory(Student s)
-	{
-		int result=0;
-		String query="delete from notification where userid='"+s.getUserId()+"'";
-		try
-		{
-			PreparedStatement pr=con.prepareStatement(query);
-			result=pr.executeUpdate();
-			
-		}
-		catch(Exception exp)
-		{
-			exp.printStackTrace();
-		}
-		return result;
-		
-	}
 	public int deleteOldOptionalSubjectMarks(Student s)
 	{
 		int result=0;
@@ -211,31 +137,13 @@ public class StudentData
 		int result=0;
 		String query="update students set Courcecode=?,semoryear=?,rollnumber=?,optionalsubject=?,firstname=?,lastname=?,emailid=?,contactnumber=?,dateofbirth=?,gender=?,state=?,city=?,fathername=?,fatheroccupation=?,mothername=?,motheroccupation=?,profilepic=?,lastlogin=?,activestatus=?,userid=? where courcecode='"+sold.getCourceCode()+"' and semoryear="+sold.getSemorYear()+" and rollnumber="+sold.getRollNumber();
 	
-		//if cource or sem or rollnumber is changed 
+		//if course or semester or roll number is changed 
 		if(!s.getCourceCode().equals(sold.getCourceCode()) || s.getSemorYear()!=sold.getSemorYear() || s.getRollNumber()!=sold.getRollNumber())
 		{
-			
-			
-			//Adding notification 
-			{
-				Notification n=new Notification();
-				n.setUserProfile("Student");
-				n.setCourceCode(s.getCourceCode());
-				n.setSemorYear(s.getSemorYear());
-				n.setTitle("New Student");
-				n.setUserId(s.generateUserId());
-				n.setMessage(s.getFullName()+" ("+s.getRollNumber()+") has taken admission in your class.");
-				n.setTime(TimeUtil.getCurrentTime());
-				new NotificationData().addNotification(n);
-				n.setUserProfile("Faculty");
-				new NotificationData().addNotification(n);
-			}
 			//deleting all the data of student from this cource
 			this.deleteMarksData(sold);
 			this.deleteAttandanceData(sold);
 			this.deleteUsersHistory(sold);
-			this.deleteNotificationHistory(sold);
-			this.deleteChatHistory(sold);
 		}
 		
 		if(!s.getOptionalSubject().equals(sold.getOptionalSubject()))

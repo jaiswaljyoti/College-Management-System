@@ -25,7 +25,6 @@ import collegeapplication.faculty.FacultyMain;
 import collegeapplication.student.StudentMain;
 import net.proteanit.sql.DbUtils;
 
-
 @SuppressWarnings("serial")
 public class AssignSubjectPanel extends JPanel {
 

@@ -119,7 +119,7 @@ public class AssignSubjectDialog extends JDialog implements ActionListener {
 		courcenamecombo.setBounds(156, 199, 338, 39);
 		getContentPane().add(courcenamecombo);
 		
-		JLabel lblCourceName = new JLabel("Cource Name  :");
+		JLabel lblCourceName = new JLabel("Course Name  :");
 		lblCourceName.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCourceName.setFont(new Font("Candara", Font.PLAIN, 18));
 		lblCourceName.setBounds(10, 199, 138, 39);

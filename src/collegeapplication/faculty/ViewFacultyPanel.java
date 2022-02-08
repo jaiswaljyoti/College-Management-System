@@ -21,7 +21,6 @@ import collegeapplication.cource.CourceData;
 import collegeapplication.student.StudentMain;
 import collegeapplication.subject.AssignSubjectDialog;
 
-
 @SuppressWarnings("serial")
 public class ViewFacultyPanel extends JPanel {
 

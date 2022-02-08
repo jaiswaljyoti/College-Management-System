@@ -27,7 +27,6 @@ import collegeapplication.admin.Admin;
 import collegeapplication.admin.AdminData;
 import collegeapplication.common.DataBaseConnection;
 
-
 @SuppressWarnings("serial")
 public class LoginPageFrame extends JFrame implements ActionListener 
 {
@@ -99,19 +98,19 @@ public class LoginPageFrame extends JFrame implements ActionListener
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblSilverOakCollage = new JLabel(ad.getCollageName());
-		lblSilverOakCollage.setForeground(Color.WHITE);
-		lblSilverOakCollage.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		lblSilverOakCollage.setHorizontalAlignment(SwingConstants.LEFT);
-		lblSilverOakCollage.setBounds(160, 43, 749, 57);
-		panel.add(lblSilverOakCollage);
+		JLabel MIT = new JLabel(ad.getCollageName());
+		MIT.setForeground(Color.WHITE);
+		MIT.setFont(new Font("Segoe UI", Font.BOLD, 30));
+		MIT.setHorizontalAlignment(SwingConstants.LEFT);
+		MIT.setBounds(160, 43, 749, 57);
+		panel.add(MIT);
 		
-		JLabel lblLogo = new JLabel("logo");
-		lblLogo.setBounds(10, 10, 140, 140);
-		lblLogo.setIcon(new ImageIcon(ad.getRoundedProfilePic(lblLogo.getWidth(), lblLogo.getHeight(), lblLogo.getWidth())));
+		JLabel Logo = new JLabel("logo");
+        Logo.setBounds(10, 10, 140, 140);
+		Logo.setIcon(new ImageIcon(ad.getRoundedProfilePic(Logo.getWidth(), Logo.getHeight(), Logo.getWidth())));
 		
 		
-		panel.add(lblLogo);
+		panel.add(Logo);
 		
 		studentloginpanel=new LoginPanel("Student",new ImageIcon("./assets/studentlogin.png"),this);
 		studentloginpanel.setVisible(true);

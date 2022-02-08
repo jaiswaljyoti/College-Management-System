@@ -118,7 +118,7 @@ public class AttandanceReportPanel extends JPanel implements ActionListener {
 
 		panel.add(classwicebutton);
 		  
-		label1 = new JLabel("Cource Name   :");
+		label1 = new JLabel("Course Name   :");
 		label1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label1.setForeground(Color.DARK_GRAY);
 		label1.setFont(new Font("Segoe UI", Font.PLAIN, 18));

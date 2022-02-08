@@ -15,7 +15,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;  
   
 
-
 @SuppressWarnings("serial")
 public class HintTextField extends JTextField {  
   

@@ -30,13 +30,11 @@ public class HomePanel extends JPanel implements ActionListener {
 	 * 
 	 */
 	private JPanel homeheaderpanel;
-	private JLabel totalstudentlabel, totalfaculitieslabel, totalcourcelabel, totallectureslabel;
+	private JLabel totalstudentlabel, totalfaculitieslabel, totalcourselabel, totallectureslabel, coursenamelabel;
 	public JLabel lastloginlabel;
 	private JLabel timedifflabel;
 	private JLabel welcomelabel;
-	private JLabel totalnotificationlabel;
-	private JPanel notificationpanel;
-	private JPanel courcespanel;
+	private JPanel coursespanel, coursepanel;
 	private JPanel faculitiespanel;
 	private JPanel studentspanel;
 	int pos[]= {20,294,568,842};
@@ -48,60 +46,57 @@ public class HomePanel extends JPanel implements ActionListener {
 		setBorder(new EmptyBorder(0, 0, 0, 0));
 		setBackground(Color.WHITE);
 		setForeground(Color.WHITE);
-		this.setSize(1116, 705);
+		this.setSize(1030, 705);
 		setLayout(null);
 		
 		
-				
-
-		notificationpanel = new JPanel();
-		notificationpanel.setBorder(new LineBorder(new Color(192, 192, 192), 3));
-		notificationpanel.setBounds(20, 244, 253, 247);
-		add(notificationpanel);
-		notificationpanel.setBackground(new Color(255, 255, 255));
-		notificationpanel.setLayout(null);
-		notificationpanel.setVisible(false);
-
-		totalnotificationlabel = new JLabel("0");
-		totalnotificationlabel.setForeground(new Color(128, 128, 128));
-		totalnotificationlabel.setFont(new Font("Tahoma", Font.BOLD, 25));
-		totalnotificationlabel.setHorizontalAlignment(SwingConstants.CENTER);
-		totalnotificationlabel.setBounds(10, 174, 233, 35);
-		notificationpanel.add(totalnotificationlabel);
-
-		JLabel lblNotification = new JLabel("Notification");
-		lblNotification.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		lblNotification.setForeground(new Color(128, 128, 128));
-		lblNotification.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNotification.setHorizontalTextPosition(JLabel.CENTER);
-		lblNotification.setVerticalTextPosition(JLabel.BOTTOM);
-		lblNotification.setBounds(10, 31, 233, 142);
-		notificationpanel.add(lblNotification);
-		lblNotification.setIcon(new ImageIcon(".//assets//notificationhomepage.png"));
+		coursespanel = new JPanel();
+		coursespanel.setBorder(new LineBorder(new Color(192, 192, 192), 3));
+		coursespanel.setBounds(20, 244, 253, 247);
+		add(coursespanel);
+		coursespanel.setBackground(new Color(255, 255, 255));
+		coursespanel.setLayout(null);
 		
-		courcespanel = new JPanel();
-		courcespanel.setBorder(new LineBorder(new Color(192, 192, 192), 3));
-		courcespanel.setBounds(20, 244, 253, 247);
-		add(courcespanel);
-		courcespanel.setBackground(new Color(255, 255, 255));
-		courcespanel.setLayout(null);
+		totalcourselabel = new JLabel("0");
+		totalcourselabel.setForeground(new Color(128, 128, 128));
+		totalcourselabel.setFont(new Font("Tahoma", Font.BOLD, 25));
+		totalcourselabel.setHorizontalAlignment(SwingConstants.CENTER);
+		totalcourselabel.setBounds(10, 174, 233, 35);
+		coursespanel.add(totalcourselabel);
 		
-		totalcourcelabel = new JLabel("0");
-		totalcourcelabel.setForeground(new Color(128, 128, 128));
-		totalcourcelabel.setFont(new Font("Tahoma", Font.BOLD, 25));
-		totalcourcelabel.setHorizontalAlignment(SwingConstants.CENTER);
-		totalcourcelabel.setBounds(10, 174, 233, 35);
-		courcespanel.add(totalcourcelabel);
+		JLabel MITCourses = new JLabel("Courses");
+		MITCourses.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		MITCourses.setForeground(new Color(128, 128, 128));
+		MITCourses.setHorizontalAlignment(SwingConstants.CENTER);
+		MITCourses.setHorizontalTextPosition(JLabel.CENTER);
+		MITCourses.setVerticalTextPosition(JLabel.BOTTOM);
+		MITCourses.setBounds(10, 31, 233, 142);
+		coursespanel.add(MITCourses);
+		MITCourses.setIcon(new ImageIcon(".//assets//courceshomepage.png"));
 		
-		JLabel lblCources = new JLabel("Cources");
-		lblCources.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		lblCources.setForeground(new Color(128, 128, 128));
-		lblCources.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCources.setHorizontalTextPosition(JLabel.CENTER);
-		lblCources.setVerticalTextPosition(JLabel.BOTTOM);
-		lblCources.setBounds(10, 31, 233, 142);
-		courcespanel.add(lblCources);
-		lblCources.setIcon(new ImageIcon(".//assets//courceshomepage.png"));
+		coursepanel = new JPanel();
+		coursepanel.setBorder(new LineBorder(new Color(192, 192, 192), 3));
+		coursepanel.setBounds(20, 244, 253, 247);
+		add(coursepanel);
+		coursepanel.setBackground(new Color(255, 255, 255));
+		coursepanel.setLayout(null);
+		
+		coursenamelabel = new JLabel("0");
+		coursenamelabel.setForeground(new Color(128, 128, 128));
+		coursenamelabel.setFont(new Font("Tahoma", Font.BOLD, 25));
+		coursenamelabel.setHorizontalAlignment(SwingConstants.CENTER);
+		coursenamelabel.setBounds(10, 174, 233, 35);
+		coursepanel.add(coursenamelabel);
+		
+		JLabel course = new JLabel("Course");
+		course.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		course.setForeground(new Color(128, 128, 128));
+		course.setHorizontalAlignment(SwingConstants.CENTER);
+		course.setHorizontalTextPosition(JLabel.CENTER);
+		course.setVerticalTextPosition(JLabel.BOTTOM);
+		course.setBounds(10, 31, 233, 142);
+		coursepanel.add(course);
+		course.setIcon(new ImageIcon(".//assets//courceshomepage.png"));
 
 		studentspanel = new JPanel();
 		studentspanel.setBorder(new LineBorder(Color.LIGHT_GRAY, 3));
@@ -198,7 +193,7 @@ public class HomePanel extends JPanel implements ActionListener {
 		welcomelabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		welcomelabel.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		welcomelabel.setForeground(Color.WHITE);
-		welcomelabel.setBounds(10, 11, 1076, 45);
+		welcomelabel.setBounds(-65, 11, 1076, 45);
 		homeheaderpanel.add(welcomelabel);
 
 		JLabel lblHome = new JLabel("Home Page");
@@ -213,7 +208,7 @@ public class HomePanel extends JPanel implements ActionListener {
 		lastloginlabel.setForeground(Color.WHITE);
 		lastloginlabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lastloginlabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lastloginlabel.setBounds(20, 47, 1066, 30);
+		lastloginlabel.setBounds(-55, 47, 1066, 30);
 		homeheaderpanel.add(lastloginlabel);
 
 		timedifflabel = new JLabel("");
@@ -230,7 +225,7 @@ public class HomePanel extends JPanel implements ActionListener {
 		this();
 		totalfaculitieslabel.setText(new FacultyData().getTotalFaculaty() + "");
 		totalstudentlabel.setText(new StudentData().getTotalStudents() + "");
-		totalcourcelabel.setText(new CourceData().getTotalCource() + "");
+		totalcourselabel.setText(new CourceData().getTotalCource() + "");
 		welcomelabel.setText("Welcome Adminstrator");
 		totallectureslabel.setText(new SubjectData().getTotalSubject() + "");
 	}
@@ -239,16 +234,16 @@ public class HomePanel extends JPanel implements ActionListener {
 		this();
 		totalfaculitieslabel.setText(new FacultyData().getFaculaty(f.getCourceCode(), f.getSemorYear()) + "");
 		totalstudentlabel.setText(new StudentData().getTotalStudentInCource(f.getCourceCode(), f.getSemorYear()) + "");
-		totalnotificationlabel.setText(""+new NotificationData().getUnreadNotification(f.getFacultyId()+"", "Faculty", f.getCourceCode(), f.getSemorYear(),f.getJoinedDate()));
-		courcespanel.setVisible(false);
-		notificationpanel.setVisible(true);
+		coursespanel.setVisible(false);
+
+		coursepanel.setLocation(pos[0], subjectpanel.getY());
+		coursenamelabel.setText(new CourceData().getcourcename(f.getCourceCode()) + "");
 		welcomelabel.setText("Welcome " + f.getFacultyName());
 		totallectureslabel.setText(new SubjectData().getTotalSubjectinCource(f.getCourceCode(), f.getSemorYear()) + "");
 
-		studentspanel.setLocation(pos[0], studentspanel.getY());
 		faculitiespanel.setLocation(pos[1], faculitiespanel.getY());
 		subjectpanel.setLocation(pos[2], subjectpanel.getY());
-		notificationpanel.setLocation(pos[3], notificationpanel.getY());
+		studentspanel.setLocation(pos[3], studentspanel.getY());
 		
 	}
 
@@ -256,16 +251,17 @@ public class HomePanel extends JPanel implements ActionListener {
 		this();
 		totalfaculitieslabel.setText(new FacultyData().getFaculaty(s.getCourceCode(), s.getSemorYear()) + "");
 		totalstudentlabel.setText(new StudentData().getTotalStudentInCource(s.getCourceCode(), s.getSemorYear()) + "");
+		coursespanel.setVisible(false);
 		
-		totalnotificationlabel.setText(""+new NotificationData().getUnreadNotification(s.getUserId()+"", "Student", s.getCourceCode(), s.getSemorYear(),s.getAdmissionDate()));
-		courcespanel.setVisible(false);
-		notificationpanel.setVisible(true);
+		coursepanel.setLocation(pos[0], subjectpanel.getY());
+		coursenamelabel.setText(new CourceData().getcourcename(s.getCourceCode()) + "");
 		welcomelabel.setText("Welcome " +s.getFullName());
 		totallectureslabel.setText(new SubjectData().getTotalSubjectinCource(s.getCourceCode(), s.getSemorYear()) + "");
-		studentspanel.setLocation(pos[0], studentspanel.getY());
 		faculitiespanel.setLocation(pos[1], faculitiespanel.getY());
 		subjectpanel.setLocation(pos[2], subjectpanel.getY());
-		notificationpanel.setLocation(pos[3], notificationpanel.getY());
+		studentspanel.setLocation(pos[3], studentspanel.getY());
+		
+		
 	}
 
 	public void setLastLogin(String lastlogin) {

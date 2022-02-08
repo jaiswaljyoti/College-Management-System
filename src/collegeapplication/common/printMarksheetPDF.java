@@ -22,7 +22,6 @@ import collegeapplication.faculty.FacultyMain;
 import collegeapplication.student.StudentMain;
 
 
-
 public class printMarksheetPDF implements Printable ,ActionListener
 {
 	private AdminMain am;

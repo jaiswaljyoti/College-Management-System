@@ -15,6 +15,7 @@ import java.awt.Font;
 import javax.swing.border.MatteBorder;
 import javax.swing.JTextField;
 
+
 @SuppressWarnings("serial")
 public class EditAdminLinksDialog extends JDialog {
 

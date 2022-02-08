@@ -19,7 +19,6 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 
-
 @SuppressWarnings("serial")
 public class AddCourceDialog extends JDialog implements ActionListener
 {
@@ -61,7 +60,7 @@ public class AddCourceDialog extends JDialog implements ActionListener
 		setBounds(100, 100, 476, 452);
 		getContentPane().setLayout(null);
 		
-		JLabel lblAddNewCource = new JLabel("Add New Cource");
+		JLabel lblAddNewCource = new JLabel("Add New Course");
 		lblAddNewCource.setForeground(new Color(255, 255, 255));
 		lblAddNewCource.setBackground(new Color(32, 178, 170));
 		lblAddNewCource.setOpaque(true);
@@ -70,7 +69,7 @@ public class AddCourceDialog extends JDialog implements ActionListener
 		lblAddNewCource.setBounds(0, 0, 473, 55);
 		getContentPane().add(lblAddNewCource);
 		
-		JLabel lblCourceCode = new JLabel("Cource Code ");
+		JLabel lblCourceCode = new JLabel("Course Code ");
 		lblCourceCode.setBorder(new EmptyBorder(0, 0, 0, 5));
 		lblCourceCode.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		lblCourceCode.setHorizontalAlignment(SwingConstants.LEFT);
@@ -78,7 +77,7 @@ public class AddCourceDialog extends JDialog implements ActionListener
 		lblCourceCode.setFocusable(true);
 		getContentPane().add(lblCourceCode);
 		
-		JLabel lblCourceName = new JLabel("Cource Name ");
+		JLabel lblCourceName = new JLabel("Course Name ");
 		lblCourceName.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCourceName.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		lblCourceName.setBorder(new EmptyBorder(0, 0, 0, 5));
@@ -123,7 +122,7 @@ public class AddCourceDialog extends JDialog implements ActionListener
 		lblTotalSemyear.setBounds(10, 284, 139, 24);
 		getContentPane().add(lblTotalSemyear);
 		
-		JButton addcourcebutton = new JButton("Add Cource");
+		JButton addcourcebutton = new JButton("Add Course");
 		addcourcebutton.setBackground(new Color(32, 178, 170));
 		addcourcebutton.setForeground(new Color(255, 255, 255));
 		addcourcebutton.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -193,14 +192,14 @@ public class AddCourceDialog extends JDialog implements ActionListener
 					{
 						lblError.setVisible(true);
 						lblError.setBounds(courcecodefield.getX(), courcecodefield.getY()+courcecodefield.getHeight(),  lblError.getWidth(), 21);
-						lblError.setText("Cource code already exist !");
+						lblError.setText("Course code already exist !");
 					}
 					else if(new CourceData().isCourceNameExist(courcename))
 					{
 						lblError.setVisible(true);
 						lblError.setBounds(courcenamefield.getX(), courcenamefield.getY()+courcenamefield.getHeight(), lblError.getWidth(), 21);
 						courcenamefield.setFocusable(true);
-						lblError.setText("Cource name already exist !");
+						lblError.setText("Course name already exist !");
 					}
 					else if(totalsemoryear<1)
 					{

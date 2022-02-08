@@ -2,6 +2,7 @@ package collegeapplication.student;
 
 import collegeapplication.subject.Subject;
 
+
 public class Marks extends Subject
 {
 	

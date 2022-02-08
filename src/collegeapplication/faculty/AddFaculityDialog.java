@@ -35,6 +35,7 @@ import javax.swing.border.MatteBorder;
 
 import collegeapplication.admin.AdminMain;
 
+
 @SuppressWarnings("serial")
 public class AddFaculityDialog extends JDialog implements ActionListener
 {

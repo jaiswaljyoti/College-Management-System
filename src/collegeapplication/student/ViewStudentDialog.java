@@ -26,7 +26,7 @@ import javax.swing.JComponent;
 public class ViewStudentDialog extends JDialog implements ActionListener
 {
 
-	private JComboBox<String> courcenamecombo,semoryearcombo,rollnumbercombo;
+	private JComboBox<String> coursenamecombo,semoryearcombo,rollnumbercombo;
 	private JButton viewdetails;
 	private AdminMain am;
 	private JLabel Errorlabel;
@@ -66,17 +66,17 @@ public class ViewStudentDialog extends JDialog implements ActionListener
 		headerlabel.setFont(new Font("Arial", Font.BOLD, 23));
 		headerlabel.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.LIGHT_GRAY));
 		
-		 courcenamecombo = new JComboBox<String>(new CourceData().getCourceName());
-		 courcenamecombo.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		 coursenamecombo = new JComboBox<String>(new CourceData().getCourceName());
+		 coursenamecombo.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		
-		courcenamecombo.setFocusable(false);
-		courcenamecombo.setBackground(Color.WHITE);
-		courcenamecombo.setBounds(170, 98, 320, 43);
-		courcenamecombo.addActionListener(this);
-		getContentPane().add(courcenamecombo);
+		coursenamecombo.setFocusable(false);
+		coursenamecombo.setBackground(Color.WHITE);
+		coursenamecombo.setBounds(170, 98, 320, 43);
+		coursenamecombo.addActionListener(this);
+		getContentPane().add(coursenamecombo);
 		
-		 semoryearcombo = new JComboBox<String>();
-		 semoryearcombo.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		semoryearcombo = new JComboBox<String>();
+		semoryearcombo.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		semoryearcombo.setFocusable(false);
 		semoryearcombo.setBackground(Color.WHITE);
 		semoryearcombo.setBounds(170, 191, 320, 43);
@@ -98,8 +98,8 @@ public class ViewStudentDialog extends JDialog implements ActionListener
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		 viewdetails = new JButton("View Details");
-		 viewdetails.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		viewdetails = new JButton("View Details");
+	    viewdetails.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		viewdetails.setFocusable(false);
 		viewdetails.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		viewdetails.setForeground(new Color(255, 255, 255));
@@ -108,11 +108,11 @@ public class ViewStudentDialog extends JDialog implements ActionListener
 		viewdetails.setBounds(351, 11, 139, 33);
 		panel.add(viewdetails);
 		
-		JLabel lblCource = new JLabel("Cource     :");
-		lblCource.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCource.setFont(new Font("Microsoft YaHei Light", Font.BOLD, 18));
-		lblCource.setBounds(24, 98, 136, 43);
-		getContentPane().add(lblCource);
+		JLabel MITCourse = new JLabel("Course     :");
+		MITCourse.setHorizontalAlignment(SwingConstants.RIGHT);
+		MITCourse.setFont(new Font("Microsoft YaHei Light", Font.BOLD, 18));
+		MITCourse.setBounds(24, 98, 136, 43);
+		getContentPane().add(MITCourse);
 		
 		JLabel lblSemyear = new JLabel("Sem/Year     :");
 		lblSemyear.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -141,9 +141,9 @@ public class ViewStudentDialog extends JDialog implements ActionListener
 		
 		if(e.getSource()==viewdetails)
 		{
-			if(courcenamecombo.getSelectedIndex()==0)
+			if(coursenamecombo.getSelectedIndex()==0)
 			{
-				showerror(courcenamecombo);
+				showerror(coursenamecombo);
 			}
 			else if(semoryearcombo.getSelectedIndex()==0)
 			{
@@ -155,10 +155,10 @@ public class ViewStudentDialog extends JDialog implements ActionListener
 			}
 			else
 			{
-				String Courcecode=new CourceData().getCourcecode(courcenamecombo.getSelectedItem()+"");
+				String Coursecode=new CourceData().getCourcecode(coursenamecombo.getSelectedItem()+"");
 				int sem=semoryearcombo.getSelectedIndex();
 				long rollnumber=Long.parseLong(rollnumbercombo.getSelectedItem()+"");
-				Student s=new StudentData().getStudentDetails(Courcecode, sem, rollnumber);
+				Student s=new StudentData().getStudentDetails(Coursecode, sem, rollnumber);
 				
 				am.viewstudentpanel=new ViewStudentPanel(s,am,am.studentpanel);
 				am.viewstudentpanel.setVisible(true);
@@ -172,17 +172,17 @@ public class ViewStudentDialog extends JDialog implements ActionListener
 			}
 		}
 		
-		if(e.getSource()==courcenamecombo)
+		if(e.getSource()==coursenamecombo)
 		{
 			
 			
-			if(courcenamecombo.getSelectedIndex()==0)
+			if(coursenamecombo.getSelectedIndex()==0)
 			{
 				semoryearcombo.setModel(new DefaultComboBoxModel<String>(new String[] {""}));
 			}
 			else
 			{
-			 String cource=(String) courcenamecombo.getSelectedItem();
+			 String cource=(String) coursenamecombo.getSelectedItem();
 
 			 semoryearcombo.setModel(new DefaultComboBoxModel<String>(new CourceData().getSemorYear(cource)));
 			}
@@ -192,9 +192,9 @@ public class ViewStudentDialog extends JDialog implements ActionListener
 		{
 			if(semoryearcombo.getSelectedIndex()>0)
 			{
-				String courcecode=new CourceData().getCourcecode(courcenamecombo.getSelectedItem()+"");
+				String coursecode=new CourceData().getCourcecode(coursenamecombo.getSelectedItem()+"");
 				int sem=semoryearcombo.getSelectedIndex();
-				rollnumbercombo.setModel(new DefaultComboBoxModel<String>(new StudentData().getRollNumber(courcecode, sem)));
+				rollnumbercombo.setModel(new DefaultComboBoxModel<String>(new StudentData().getRollNumber(coursecode, sem)));
 			}
 		}
 		

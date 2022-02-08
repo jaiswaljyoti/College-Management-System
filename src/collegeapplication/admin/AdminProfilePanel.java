@@ -20,8 +20,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-
-
 @SuppressWarnings("serial")
 public class AdminProfilePanel extends JPanel {
 
@@ -83,7 +81,7 @@ public class AdminProfilePanel extends JPanel {
 		panel.setBounds(10, 0, 1096, 183);
 		add(panel);
 		panel.setLayout(null);
-		 headinglabel = new JLabel("Contact Us");
+		headinglabel = new JLabel("Contact Us");
 		headinglabel.setIcon(null);
 		headinglabel.setBounds(10, 65, 272, 44);
 		panel.add(headinglabel);

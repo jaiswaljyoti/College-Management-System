@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 
 import collegeapplication.common.ImageUtil;
 
-
 public class Admin
 {
 	private String website;

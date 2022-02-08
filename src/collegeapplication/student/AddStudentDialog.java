@@ -119,7 +119,7 @@ public class AddStudentDialog extends JDialog implements ActionListener {
 
 		courcenamecombo = new JComboBox<String>(new CourceData().getCourceName());
 		courcenamecombo.setForeground(Color.DARK_GRAY);
-		courcenamecombo.setToolTipText("Cource");
+		courcenamecombo.setToolTipText("Course");
 		courcenamecombo.setFont(new Font("Segoe UI Historic", Font.PLAIN, 18));
 		courcenamecombo.addActionListener(this);
 		courcenamecombo.setBackground(new Color(255, 255, 255));

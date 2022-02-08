@@ -8,7 +8,6 @@ import java.sql.Statement;
 
 import collegeapplication.common.DataBaseConnection;
 
-
 public class RollNumberData
 {	
 	static Connection con=DataBaseConnection.getConnection();

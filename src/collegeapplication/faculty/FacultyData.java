@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import collegeapplication.common.DataBaseConnection;
-import collegeapplication.common.Notification;
-import collegeapplication.common.NotificationData;
-import collegeapplication.common.TimeUtil;
 
 
 public class FacultyData 
@@ -390,24 +387,6 @@ public class FacultyData
 		try
 		{
 			
-			if(!fold.getSubject().equals(f.getSubject())||!fold.getCourceCode().equals(f.getCourceCode())||fold.getSemorYear()!=f.getSemorYear()||!fold.getPosition().equals(f.getPosition()))
-			{
-				this.deleteNotificationHistory(f);
-				Notification n=new Notification();
-				n.setUserProfile("Student");
-				n.setCourceCode(f.getCourceCode());
-				n.setSemorYear(f.getSemorYear());
-				n.setTitle("Subject Faculty");
-				n.setUserId(f.getFacultyId()+"");
-				n.setMessage(f.getFacultyName()+" is your "+f.getSubject()+" subject's new "+f.getPosition()+".");
-				n.setTime(TimeUtil.getCurrentTime());
-				new NotificationData().addNotification(n);
-				n.setMessage(f.getFacultyName()+" is new "+f.getPosition()+" in "+f.getSubject()+" subject.");
-				n.setUserProfile("Faculty");
-				new NotificationData().addNotification(n);
-				
-			}
-			
 			String query="update faculties set courcecode='"+f.getCourceCode()+"',semoryear="+f.getSemorYear()+",subject='"+f.getSubject()+"',position='"+f.getPosition()+"' where facultyid="+f.getFacultyId();
 			PreparedStatement pr=con.prepareStatement(query);
 			result=pr.executeUpdate();
@@ -418,23 +397,6 @@ public class FacultyData
 		exp.printStackTrace();	
 		}
 		return result;
-	}
-	public int deleteNotificationHistory(Faculty f)
-	{
-		int result=0;
-		String query="delete from notification where userid='"+f.getFacultyId()+"'";
-		try
-		{
-			PreparedStatement pr=con.prepareStatement(query);
-			result=pr.executeUpdate();
-			
-		}
-		catch(Exception exp)
-		{
-			exp.printStackTrace();
-		}
-		return result;
-		
 	}
 	public ResultSet getFacultySubjectInfo(String condition)
 	{

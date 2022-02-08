@@ -28,7 +28,6 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-
 @SuppressWarnings("serial")
 public class EditAdminDetailsDialog extends JDialog implements ActionListener {
 

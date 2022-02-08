@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import net.proteanit.sql.DbUtils;
 
+
 @SuppressWarnings("serial")
 public class AddSubjectDialog extends JDialog implements ActionListener
 {
@@ -88,7 +89,7 @@ public class AddSubjectDialog extends JDialog implements ActionListener
 		lblSubjectName.setBounds(30, 134, 132, 35);
 		contentPanel.add(lblSubjectName);
 		
-		JLabel lblCourceType = new JLabel("Cource Type");
+		JLabel lblCourceType = new JLabel("Course Type");
 		lblCourceType.setForeground(Color.DARK_GRAY);
 		lblCourceType.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblCourceType.setBounds(30, 198, 132, 36);

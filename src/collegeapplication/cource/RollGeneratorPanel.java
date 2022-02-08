@@ -49,7 +49,7 @@ public class RollGeneratorPanel extends JPanel {
 		semyearlabel=new JLabel[sem];
 		textField=new JTextField[sem];
 		
-		JLabel lblCourceCode = new JLabel("Cource Code");
+		JLabel lblCourceCode = new JLabel("Course Code");
 		lblCourceCode.setBorder(new LineBorder(new Color(192, 192, 192)));
 		lblCourceCode.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCourceCode.setOpaque(true);
