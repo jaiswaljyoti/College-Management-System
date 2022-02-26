@@ -46,7 +46,7 @@ public class HomePanel extends JPanel implements ActionListener {
 		setBorder(new EmptyBorder(0, 0, 0, 0));
 		setBackground(Color.WHITE);
 		setForeground(Color.WHITE);
-		this.setSize(1030, 705);
+		this.setSize(1113, 705);
 		setLayout(null);
 		
 		

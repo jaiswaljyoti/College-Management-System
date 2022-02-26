@@ -209,7 +209,7 @@ public class AdminMain extends JFrame  implements ActionListener
 		sidebarpanel.add(homebutton);
 		btn=homebutton;
 		
-		courcebutton = createButton("Cources");
+		courcebutton = createButton("Courses");
 		sidebarpanel.add(courcebutton);
 		
 		studentsbutton =createButton("Students");

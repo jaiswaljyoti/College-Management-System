@@ -91,7 +91,7 @@ public class AttandanceReportPanel extends JPanel implements ActionListener {
 		headinglabel.setFont(new Font("Segoe UI", Font.BOLD, 28));
 		headinglabel.setOpaque(true);
 		
-		subjectwicebutton = new JButton("Subject Wice");
+		subjectwicebutton = new JButton("Subject Wise");
 		subjectwicebutton.setForeground(new Color(0, 139, 139));
 		subjectwicebutton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		subjectwicebutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -100,7 +100,7 @@ public class AttandanceReportPanel extends JPanel implements ActionListener {
 
 		panel.add(subjectwicebutton);
 		
-		studentwicebutton = new JButton("Student Wice");
+		studentwicebutton = new JButton("Student Wise");
 		studentwicebutton.setForeground(new Color(0, 139, 139));
 		studentwicebutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		studentwicebutton.setFont(new Font("Segoe UI", Font.BOLD, 15));
@@ -109,7 +109,7 @@ public class AttandanceReportPanel extends JPanel implements ActionListener {
 
 		panel.add(studentwicebutton);
 		
-		classwicebutton = new JButton("Class Wice");
+		classwicebutton = new JButton("Class Wise");
 		classwicebutton.setForeground(new Color(0, 139, 139));
 		classwicebutton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		classwicebutton.setBackground(Color.WHITE);

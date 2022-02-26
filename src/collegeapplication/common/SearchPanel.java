@@ -401,7 +401,7 @@ public class SearchPanel extends JPanel implements ActionListener {
 		String searchtext=searchfield.getText().trim();
 		if(studentandfacultycombo.getSelectedIndex()==0)
 		{
-			String defaultquery="select s.courcecode as 'Class' ,s.rollnumber as 'Roll Number',concat(s.firstname,' ',s.lastname) as 'Student Name',c.courcename as 'Cource Name',concat(c.semoryear,'-',s.semoryear) as 'Sem/Year' from students s left join cources c on s.courcecode=c.courcecode ";
+			String defaultquery="select s.courcecode as 'Class' ,s.rollnumber as 'Roll Number',concat(s.firstname,' ',s.lastname) as 'Student Name',c.courcename as 'Course Name',concat(c.semoryear,'-',s.semoryear) as 'Sem/Year' from students s left join cources c on s.courcecode=c.courcecode ";
 			String query=defaultquery;
 			if(courcenamecombo.getSelectedIndex()>0)
 			{

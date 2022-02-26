@@ -48,7 +48,7 @@ public class CourceData
 		ResultSet st=null;
 		try
 		{
-			String query="select c.sr_no as 'Index no.',c.courcecode as 'Cource Code' ,c.courcename as 'Cource Name',(select count(*) from subject where subject.courcecode=c.courcecode) as 'Subjects' ,(select count(*) from students where students.courcecode=c.courcecode) as 'Students',concat(c.totalsemoryear,' ',c.semoryear) as 'Total Sem/Year' from cources c;";
+			String query="select c.sr_no as 'Index no.',c.courcecode as 'Course Code' ,c.courcename as 'Course Name',(select count(*) from subject where subject.courcecode=c.courcecode) as 'Subjects' ,(select count(*) from students where students.courcecode=c.courcecode) as 'Students',concat(c.totalsemoryear,' ',c.semoryear) as 'Total Sem/Year' from cources c;";
 			PreparedStatement pr=con.prepareStatement(query);
 			
 			st=pr.executeQuery();

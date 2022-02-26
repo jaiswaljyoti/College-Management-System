@@ -125,7 +125,7 @@ public class MarkSheetReportPanel extends JPanel implements ActionListener {
 				});
 		panel.add(declareresultbutton);
 		
-		subjectwicebutton = new JButton("Subject Wice");
+		subjectwicebutton = new JButton("Subject Wise");
 		subjectwicebutton.setForeground(new Color(0, 139, 139));
 		subjectwicebutton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		subjectwicebutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -134,7 +134,7 @@ public class MarkSheetReportPanel extends JPanel implements ActionListener {
 
 		panel.add(subjectwicebutton);
 		
-		studentwicebutton = new JButton("Student Wice");
+		studentwicebutton = new JButton("Student Wise");
 		studentwicebutton.setForeground(new Color(0, 139, 139));
 		studentwicebutton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		studentwicebutton.setFont(new Font("Segoe UI", Font.BOLD, 15));
@@ -143,7 +143,7 @@ public class MarkSheetReportPanel extends JPanel implements ActionListener {
 
 		panel.add(studentwicebutton);
 		
-		classwicebutton = new JButton("Class Wice");
+		classwicebutton = new JButton("Class Wise");
 		classwicebutton.setForeground(new Color(0, 139, 139));
 		classwicebutton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		classwicebutton.setBackground(Color.WHITE);
@@ -612,7 +612,7 @@ public class MarkSheetReportPanel extends JPanel implements ActionListener {
 	public void createTableForDeclareResult(String cource)
 	{
 		submitbutton.setVisible(true);
-		String columnname[]= {"Cource","Sem","Cource Name",""};
+		String columnname[]= {"Course","Sem","Course Name",""};
 		DefaultTableModel model=new DefaultTableModel(columnname,0)
 				{
 					boolean isEdit[]= {false,false,false,true};

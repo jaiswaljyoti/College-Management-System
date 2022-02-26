@@ -421,7 +421,7 @@ public class MarkAttandancePanel extends JPanel implements ActionListener {
 	}
 	public DefaultTableModel  createModel(Attandance a)
 	{
-		String Column[]= {"Roll Number","Student Name","Subject Code","Cource","Sem/Year","Attandance Date",""};
+		String Column[]= {"Roll Number","Student Name","Subject Code","Course","Sem/Year","Attandance Date",""};
 		DefaultTableModel model=new DefaultTableModel(Column,0)
 				{
 					boolean canEdit[]= {false,false,false,false,false,false,true};
