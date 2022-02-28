@@ -15,7 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
@@ -23,9 +22,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
-import collegeapplication.admin.Admin;
-import collegeapplication.admin.AdminData;
-import collegeapplication.common.DataBaseConnection;
 
 @SuppressWarnings("serial")
 public class LoginPageFrame extends JFrame implements ActionListener 
@@ -53,20 +49,9 @@ public class LoginPageFrame extends JFrame implements ActionListener
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					if(DataBaseConnection.checkconnection())
-					{
-					LoginPageFrame frame = new LoginPageFrame();
-					frame.setVisible(true);
-					frame.setLocation(-7, 0);
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, "Start the Database Server first","Error",JOptionPane.ERROR_MESSAGE);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				LoginPageFrame frame = new LoginPageFrame();
+				frame.setVisible(true);
+				frame.setLocation(-7, 0);	
 			}
 		});
 	}
@@ -90,15 +75,13 @@ public class LoginPageFrame extends JFrame implements ActionListener
 		
 		
 		
-		Admin ad=new AdminData().getAdminData();
-		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 139, 139,220));
 		panel.setBounds(0, 26, 1364, 159);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel MIT = new JLabel(ad.getCollageName());
+		JLabel MIT = new JLabel("Muzaffarpur Institute of Technology");
 		MIT.setForeground(Color.WHITE);
 		MIT.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		MIT.setHorizontalAlignment(SwingConstants.LEFT);
@@ -107,7 +90,7 @@ public class LoginPageFrame extends JFrame implements ActionListener
 		
 		JLabel Logo = new JLabel("logo");
         Logo.setBounds(10, 10, 140, 140);
-		Logo.setIcon(new ImageIcon(ad.getRoundedProfilePic(Logo.getWidth(), Logo.getHeight(), Logo.getWidth())));
+		Logo.setIcon(new ImageIcon("./assets/mit_logo.png"));
 		
 		
 		panel.add(Logo);

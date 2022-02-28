@@ -19,6 +19,7 @@ import javax.swing.border.LineBorder;
 
 import collegeapplication.admin.AdminData;
 import collegeapplication.admin.AdminMain;
+import collegeapplication.common.DataBaseConnection;
 import collegeapplication.common.HintPasswordField;
 import collegeapplication.common.HintTextField;
 import collegeapplication.faculty.Faculty;
@@ -137,11 +138,22 @@ public class LoginPanel extends JPanel implements ActionListener
 		add(showandhidebutton);
 
 	}
+	public static void connection()
+	{
+		try {
+			if(!DataBaseConnection.checkconnection())
+			{
+				JOptionPane.showMessageDialog(null, "Start the Database Server first","Error",JOptionPane.ERROR_MESSAGE);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent arg0) 
 	{
 		// TODO Auto-generated method stub
-		
+		connection();
 		if(loginprofile.equals("Admin"))
 		{
 			boolean result=new AdminData().checkPassword(useridfield.getText(), passwordfield.getText());
@@ -157,10 +169,7 @@ public class LoginPanel extends JPanel implements ActionListener
 
 				loginpageframe.dispose();
 				
-				
-				
 			}
-			
 		}
 		else if(loginprofile.equals("Faculty"))
 		{
