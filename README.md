@@ -6,10 +6,12 @@ I have designed and developed College management system. The Technology I have u
 
 Thanks !
 
+
 ## Installation
 
 * Import this project into your IDE(Example: Eclipse)
 * Create new Database and set name as 'collegedata' after that import 'collegedata.sql' file (Attached with this folder) in this database.
+
 
 ## Database Connection
 
@@ -51,7 +53,7 @@ Thanks !
 
 ## About
 
-My name is [Jyoti kumari](https://github.com/jaiswaljyoti). I'm a final year student of Information Technology. Contact me for any improvement in this project.
+My name is [Jyoti kumari](https://github.com/jaiswaljyoti). I'm a final year B.tech student of Information Technology. Contact me for any improvement in this project.
 
 
 Email : jaiswaljyoti2000@gmail.com
