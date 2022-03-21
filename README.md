@@ -60,5 +60,5 @@ Email : jaiswaljyoti2000@gmail.com
 
 
 ## Social Media Accounts
-[![Linkedin](https://img.icons8.com/fluent/40/000000/facebook-new.png)](https://www.linkedin.com/in/jyoti-kumari-577867194/)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+[![Linkedin](https://img.icons8.com/fluent/40/000000/linkedin.png)](https://www.linkedin.com/in/jyoti-kumari-577867194/)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 [![Twitter](https://img.icons8.com/fluent/40/000000/twitter.png)](https://twitter.com/Jyotikum11)
