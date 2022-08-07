@@ -1,15 +1,20 @@
 package collegeapplication.admin;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,6 +30,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.plaf.ColorUIResource;
 
+import collegeapplication.chat.ChatData;
+import collegeapplication.chat.ChatMainPanel;
 import collegeapplication.common.DataBaseConnection;
 import collegeapplication.common.HomePanel;
 import collegeapplication.common.SearchPanel;
@@ -75,7 +82,7 @@ public class AdminMain extends JFrame  implements ActionListener
 	private CourcePanel courcepanel;
 	private SubjectPanel subjectpanel;
 	private HomePanel homepanel;
-	
+
 	public StudentPanel studentpanel;
 	public ViewStudentPanel viewstudentpanel;
 	public MarkSheetPanel marksheetpanel;
@@ -93,16 +100,21 @@ public class AdminMain extends JFrame  implements ActionListener
 	public FacultyPanel facultypanel;
 	public AdminProfilePanel adminprofilepanel;
 	public SearchPanel searchpanel;
+	public ChatMainPanel chatmainpanel;
 	public UsersPanel userspanel;
 	
 	public int panely=0,panelx=250;
 	
 	private Admin a;
 	private String lastlogin;
+	private JButton chatbutton;
 	private int row=0;
 	private JButton logoutbutton;
 	private Timer timer;
 	private JButton marksheetreportbutton;
+	private JLabel totalnewchatmessage;
+	private Image messagecount;
+	private int chat;
 	/**
 	 * Launch the application.
 	 */
@@ -140,6 +152,23 @@ public class AdminMain extends JFrame  implements ActionListener
 			{
 				public void actionPerformed(ActionEvent arg0) 
 				{
+					int result=new AdminData().setActiveStatus(a.getActiveStatus());
+					
+					if(result>0)
+					{
+						chat=new ChatData().getUndreadMessageCountAdmin();
+						if(chat>0)
+						{
+							totalnewchatmessage.setText(chat>999?"999+":chat+"");
+							totalnewchatmessage.setVisible(true);
+							totalnewchatmessage.setIcon(new ImageIcon(messagecount.getScaledInstance(26+totalnewchatmessage.getText().length(), 26, Image.SCALE_SMOOTH)));
+						}
+						else 
+						{
+							totalnewchatmessage.setVisible(false);
+						}
+					}
+					
 				}
 				
 			};
@@ -156,6 +185,14 @@ public class AdminMain extends JFrame  implements ActionListener
 	    UIManager.put("ComboBox.selectionForeground", new ColorUIResource(frColor));
 	    UIManager.put("ScrollBarUI", "com.sun.java.swing.plaf.windows.WindowsScrollBarUI");
 	  
+	    try
+		{
+			messagecount=ImageIO.read(new File("./assets/messagecount.png"));
+		}
+		catch(IOException exp)
+		{
+			exp.printStackTrace();
+		}
 		this.setResizable(false);
 		setTitle("Collage Data Management");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -237,6 +274,31 @@ public class AdminMain extends JFrame  implements ActionListener
 		sidebarpanel.add(attandancereportbutton);
 		
 		
+
+		chatbutton = createButton("Chat");
+		chatbutton.setLayout(new BorderLayout());
+		sidebarpanel.add(chatbutton);
+		chat=new ChatData().getUndreadMessageCountAdmin();
+		totalnewchatmessage=new JLabel();
+		totalnewchatmessage.setSize(60,30);
+		totalnewchatmessage.setFont(new Font("Arial",Font.BOLD,12));
+		totalnewchatmessage.setForeground(Color.white);
+		totalnewchatmessage.setHorizontalTextPosition(JLabel.CENTER);
+		totalnewchatmessage.setVerticalTextPosition(JLabel.CENTER);
+		chatbutton.add(totalnewchatmessage,BorderLayout.LINE_END);
+		if(chat>0)
+		{
+			totalnewchatmessage.setText(chat>999?"999+":chat+"");
+			totalnewchatmessage.setVisible(true);
+			totalnewchatmessage.setIcon(new ImageIcon(messagecount.getScaledInstance(26+totalnewchatmessage.getText().length(), 26, Image.SCALE_SMOOTH)));
+		}
+//		ActionListener refreshchat=e->
+//		{
+//		
+//		};
+//		Timer activechattimer=new Timer(2000,refreshchat);
+//		activechattimer.start();
+//		
 		searchbutton = createButton("Search");
 		sidebarpanel.add(searchbutton);
 		
@@ -388,6 +450,21 @@ public class AdminMain extends JFrame  implements ActionListener
 		{
 			searchpanel.setVisible(false);
 		}
+		else if(chatmainpanel!=null && chatmainpanel.isVisible())
+		{
+			
+			try {
+				
+				if(chatmainpanel.chatpanel.subchatpanel!=null&&chatmainpanel.chatpanel.subchatpanel.socket!=null&&!chatmainpanel.chatpanel.subchatpanel.socket.isClosed())
+				{
+					chatmainpanel.chatpanel.subchatpanel.socket.close();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			chatmainpanel.setVisible(false);
+		}
 		else if(userspanel!=null && userspanel.isVisible())
 		{
 			userspanel.setVisible(false);
@@ -529,6 +606,16 @@ public class AdminMain extends JFrame  implements ActionListener
 			userspanel.setVisible(true);
 			userspanel.setLocation(this.panelx, this.panely);
 			contentPane.add(userspanel);
+		}
+		else if(source==chatbutton)
+		{
+			
+			activeButton(chatbutton);
+			chatmainpanel=new ChatMainPanel(this);
+			chatmainpanel.setLocation(this.panelx, this.panely);
+			chatmainpanel.setVisible(true);
+			contentPane.add(chatmainpanel);
+			
 		}
 		else if(source==searchbutton)
 		{

@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import collegeapplication.common.DataBaseConnection;
-
+import collegeapplication.common.Notification;
+import collegeapplication.common.NotificationData;
+import collegeapplication.common.TimeUtil;
 
 public class SubjectData 
 {
@@ -154,6 +156,22 @@ public class SubjectData
 			pr.setInt(6, su.getMaxTheoryMarks());
 			pr.setInt(7,su.getMaxPracticalMarks());
 			result=pr.executeUpdate();
+			
+			//Adding notification of new subject
+			{
+				Notification n=new Notification();
+				n.setUserProfile("Student");
+				n.setCourceCode(su.getCourceCode());
+				n.setUserId("Admin");
+				n.setSemorYear(su.getSemorYear());
+				n.setTitle("New Subject");
+				n.setMessage(su.getSubjectName()+" ("+su.getSubjectCode()+") is your new subject.");
+				n.setTime(TimeUtil.getCurrentTime());
+				new NotificationData().addNotification(n);
+				n.setMessage(su.getSubjectName()+" ("+su.getSubjectCode()+") is new subject in your class");
+				n.setUserProfile("Faculty");
+				new NotificationData().addNotification(n);
+			}
 			
 			pr.close();
 			

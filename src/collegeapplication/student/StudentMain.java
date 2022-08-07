@@ -1,17 +1,23 @@
 package collegeapplication.student;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.Socket;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,8 +34,12 @@ import javax.swing.border.MatteBorder;
 import javax.swing.plaf.ColorUIResource;
 
 import collegeapplication.admin.AdminProfilePanel;
+import collegeapplication.chat.ChatData;
+import collegeapplication.chat.ChatMainPanel;
 import collegeapplication.common.DataBaseConnection;
 import collegeapplication.common.HomePanel;
+import collegeapplication.common.NotificationData;
+import collegeapplication.common.NotificationPanel;
 import collegeapplication.common.SearchPanel;
 import collegeapplication.common.TimeUtil;
 import collegeapplication.faculty.FacultyPanel;
@@ -54,6 +64,7 @@ public class StudentMain extends JFrame  implements ActionListener
 	private JButton marksheetbutton;
 	private JButton attandancereportbutton;
 	private JButton searchbutton;
+	private JButton notificationbutton;
 	private JButton contactusbutton;
 	private JButton logoutbutton;
 	private JButton exitbutton;
@@ -76,6 +87,8 @@ public class StudentMain extends JFrame  implements ActionListener
 	public FacultyPanel facultypanel;
 	public AdminProfilePanel adminprofilepanel;
 	public SearchPanel searchpanel;
+	private ChatMainPanel chatmainpanel;
+	public NotificationPanel notificationpanel;
 	public int panely=0,panelx=250;
 	private JButton btn;
 	private JButton myprofilebutton;
@@ -83,8 +96,12 @@ public class StudentMain extends JFrame  implements ActionListener
 	public Student s;
 	private int row=63;
 	private JButton assignedsubjectbutton;
+	private JButton chatbutton;
 	public Socket socket;
 	private Timer timer;
+	private BufferedImage messagecount;
+	private JLabel totalnewnotification;
+	private JLabel totalnewchatmessage;
 	/**
 	 * Launch the application.
 	 */
@@ -131,9 +148,38 @@ public class StudentMain extends JFrame  implements ActionListener
 						JOptionPane.showMessageDialog(null,"Your account is deleted by Admin","Account deleted",JOptionPane.ERROR_MESSAGE);
 						System.exit(0);
 					}
+					else
+					{
+						int notification=new NotificationData().getUnreadNotification(s.getUserId(), "Student", s.getCourceCode(), s.getSemorYear(),s.getAdmissionDate());
+						if(notification>0)
+						{
+						totalnewnotification.setVisible(true);
+						totalnewnotification.setText(notification>999?"999+":notification+"");
+						totalnewnotification.setIcon(new ImageIcon(messagecount.getScaledInstance(24+totalnewnotification.getText().length(), 24, Image.SCALE_SMOOTH)));
+						}
+						int chat=new ChatData().getUndreadMessageCountStudent(s);
+						if(chat>0)
+						{
+							totalnewchatmessage.setText(chat>999?"999+":chat+"");
+							totalnewchatmessage.setVisible(true);
+							totalnewchatmessage.setIcon(new ImageIcon(messagecount.getScaledInstance(26+totalnewchatmessage.getText().length(), 26, Image.SCALE_SMOOTH)));
+						}
+						else if(chat==0) 
+						{
+							totalnewchatmessage.setVisible(false);
+						}
+					}
 			}
 			
 		};
+		try
+		{
+			messagecount=ImageIO.read(new File("./assets/messagecount.png"));
+		}
+		catch(IOException exp)
+		{
+			exp.printStackTrace();
+		}
 		timer=new Timer(1000,setActive);
 		timer.start();
 		this.s=s;
@@ -217,10 +263,49 @@ public class StudentMain extends JFrame  implements ActionListener
 		attandancereportbutton = createButton("Attandance Report");
 		sidebarpanel.add(attandancereportbutton);
 		
+		chatbutton = createButton("Chat");
+		chatbutton.setLayout(new BorderLayout());
+		sidebarpanel.add(chatbutton);
+		int chat=new ChatData().getUndreadMessageCountStudent(s);
+		totalnewchatmessage=new JLabel();
+		totalnewchatmessage.setSize(60,30);
+		totalnewchatmessage.setFont(new Font("Arial",Font.BOLD,12));
+		totalnewchatmessage.setForeground(Color.white);
+		totalnewchatmessage.setHorizontalTextPosition(JLabel.CENTER);
+		totalnewchatmessage.setVerticalTextPosition(JLabel.CENTER);
+		chatbutton.add(totalnewchatmessage,BorderLayout.LINE_END);
+		System.out.println(chat);
+		if(chat>0)
+		{
+			totalnewchatmessage.setText(chat>999?"999+":chat+"");
+			totalnewchatmessage.setVisible(true);
+			totalnewchatmessage.setIcon(new ImageIcon(messagecount.getScaledInstance(26+totalnewchatmessage.getText().length(), 26, Image.SCALE_SMOOTH)));
+		}
 		
 		searchbutton = createButton("Search");
 		sidebarpanel.add(searchbutton);
-				
+		
+		notificationbutton = createButton("Notification");
+		notificationbutton.setLayout(new BorderLayout());
+		sidebarpanel.add(notificationbutton);
+		
+		int notification=new NotificationData().getUnreadNotification(s.getUserId(), "Student", s.getCourceCode(), s.getSemorYear(),s.getAdmissionDate());
+		totalnewnotification=new JLabel();
+		totalnewnotification.setSize(60,30);
+		totalnewnotification.setFont(new Font("Arial",Font.BOLD,12));
+		totalnewnotification.setForeground(Color.white);
+		totalnewnotification.setHorizontalTextPosition(JLabel.CENTER);
+		totalnewnotification.setVerticalTextPosition(JLabel.CENTER);
+		notificationbutton.add(totalnewnotification,BorderLayout.LINE_END);
+		
+		if(notification>0)
+		{
+			totalnewnotification.setText(notification>999?"999+":notification+"");
+			totalnewnotification.setVisible(true);
+			totalnewnotification.setIcon(new ImageIcon(messagecount.getScaledInstance(26+totalnewnotification.getText().length(), 26, Image.SCALE_SMOOTH)));
+		}
+		
+		
 		myprofilebutton = createButton("My Profile","Profile");
 		sidebarpanel.add(myprofilebutton);
 		
@@ -362,6 +447,23 @@ public class StudentMain extends JFrame  implements ActionListener
 		{
 			searchpanel.setVisible(false);
 		}
+		else if(notificationpanel!=null && notificationpanel.isVisible())
+		{
+			notificationpanel.setVisible(false);
+		}
+		else if(chatmainpanel!=null && chatmainpanel.isVisible())
+		{
+			try {
+				if(chatmainpanel.chatpanel.subchatpanel!=null&&chatmainpanel.chatpanel.subchatpanel.socket!=null&&!chatmainpanel.chatpanel.subchatpanel.socket.isClosed())
+				{
+					chatmainpanel.chatpanel.subchatpanel.socket.close();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			chatmainpanel.setVisible(false);
+		}
 		
 	}
 	@Override
@@ -459,7 +561,15 @@ public class StudentMain extends JFrame  implements ActionListener
 				c.setBackground(Color.white);
 			}
 		}
-
+		else if(source==chatbutton)
+		{
+			activeButton(chatbutton);
+			chatmainpanel=new ChatMainPanel(this);
+			chatmainpanel.setLocation(this.panelx, this.panely);
+			chatmainpanel.setVisible(true);
+			contentPane.add(chatmainpanel);
+			
+		}
 		else if(source==searchbutton)
 		{
 			activeButton(searchbutton);
@@ -468,6 +578,19 @@ public class StudentMain extends JFrame  implements ActionListener
 			searchpanel.setVisible(true);
 			contentPane.add(searchpanel);
 			
+		}
+		else if(source==notificationbutton)
+		{
+			activeButton(notificationbutton);
+			if(totalnewnotification!=null && totalnewnotification.isVisible())
+			{
+				totalnewnotification.setVisible(false);
+			}
+			notificationpanel=new NotificationPanel(this);
+			notificationpanel.setLocation(panelx,panely);
+			notificationpanel.setVisible(true);
+			notificationpanel.setFocusable(true);
+			contentPane.add(notificationpanel);
 		}
 		else if(source==myprofilebutton)
 		{

@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import collegeapplication.common.DataBaseConnection;
+import collegeapplication.common.Notification;
+import collegeapplication.common.NotificationData;
+import collegeapplication.common.TimeUtil;
 
 
 public class CourceData
@@ -438,8 +440,22 @@ public class CourceData
 	public void declareResult(Cource c)
 	{
 		try
-		{	
-			if(updateResult(c)==0)
+		{		if(c.getIsDeclared())
+				{
+					Notification n=new Notification();
+					n.setUserProfile("Student");
+					n.setCourceCode(c.getCourceCode());
+					n.setSemorYear(c.getSemorYear());
+					n.setTitle("Result");
+					n.setUserId("Admin");
+					n.setMessage("Your result is declared. now you can see your marksheet.");
+					n.setTime(TimeUtil.getCurrentTime());
+					new NotificationData().addNotification(n);
+					n.setMessage( c.getCourceCode()+" "+getsemoryear(c.getCourceCode())+"-"+c.getSemorYear()+" result is declared. now you can see student's marksheet.");
+					n.setUserProfile("Faculty");
+					new NotificationData().addNotification(n);
+				}
+				if(updateResult(c)==0)
 				{
 				String query="insert into result values(?,?,?)";
 				PreparedStatement pr=con.prepareStatement(query);

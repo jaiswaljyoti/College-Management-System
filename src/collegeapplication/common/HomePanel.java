@@ -30,10 +30,12 @@ public class HomePanel extends JPanel implements ActionListener {
 	 * 
 	 */
 	private JPanel homeheaderpanel;
-	private JLabel totalstudentlabel, totalfaculitieslabel, totalcourselabel, totallectureslabel, coursenamelabel;
+	private JLabel totalstudentlabel, totalfaculitieslabel, totalcourselabel, totallectureslabel, coursenamelabel;;
 	public JLabel lastloginlabel;
 	private JLabel timedifflabel;
 	private JLabel welcomelabel;
+	private JLabel totalnotificationlabel;
+	private JPanel notificationpanel;
 	private JPanel coursespanel, coursepanel;
 	private JPanel faculitiespanel;
 	private JPanel studentspanel;
@@ -48,6 +50,32 @@ public class HomePanel extends JPanel implements ActionListener {
 		setForeground(Color.WHITE);
 		this.setSize(1113, 705);
 		setLayout(null);
+		
+
+		notificationpanel = new JPanel();
+		notificationpanel.setBorder(new LineBorder(new Color(192, 192, 192), 3));
+		notificationpanel.setBounds(20, 244, 253, 247);
+		add(notificationpanel);
+		notificationpanel.setBackground(new Color(255, 255, 255));
+		notificationpanel.setLayout(null);
+		notificationpanel.setVisible(false);
+
+		totalnotificationlabel = new JLabel("0");
+		totalnotificationlabel.setForeground(new Color(128, 128, 128));
+		totalnotificationlabel.setFont(new Font("Tahoma", Font.BOLD, 25));
+		totalnotificationlabel.setHorizontalAlignment(SwingConstants.CENTER);
+		totalnotificationlabel.setBounds(10, 174, 233, 35);
+		notificationpanel.add(totalnotificationlabel);
+
+		JLabel lblNotification = new JLabel("Notification");
+		lblNotification.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		lblNotification.setForeground(new Color(128, 128, 128));
+		lblNotification.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNotification.setHorizontalTextPosition(JLabel.CENTER);
+		lblNotification.setVerticalTextPosition(JLabel.BOTTOM);
+		lblNotification.setBounds(10, 31, 233, 142);
+		notificationpanel.add(lblNotification);
+		lblNotification.setIcon(new ImageIcon(".//assets//notificationhomepage.png"));
 		
 		
 		coursespanel = new JPanel();
@@ -234,16 +262,16 @@ public class HomePanel extends JPanel implements ActionListener {
 		this();
 		totalfaculitieslabel.setText(new FacultyData().getFaculaty(f.getCourceCode(), f.getSemorYear()) + "");
 		totalstudentlabel.setText(new StudentData().getTotalStudentInCource(f.getCourceCode(), f.getSemorYear()) + "");
+		totalnotificationlabel.setText(""+new NotificationData().getUnreadNotification(f.getFacultyId()+"", "Faculty", f.getCourceCode(), f.getSemorYear(),f.getJoinedDate()));
 		coursespanel.setVisible(false);
-
-		coursepanel.setLocation(pos[0], subjectpanel.getY());
-		coursenamelabel.setText(new CourceData().getcourcename(f.getCourceCode()) + "");
+		notificationpanel.setVisible(true);
 		welcomelabel.setText("Welcome " + f.getFacultyName());
 		totallectureslabel.setText(new SubjectData().getTotalSubjectinCource(f.getCourceCode(), f.getSemorYear()) + "");
 
+		studentspanel.setLocation(pos[0], studentspanel.getY());
 		faculitiespanel.setLocation(pos[1], faculitiespanel.getY());
 		subjectpanel.setLocation(pos[2], subjectpanel.getY());
-		studentspanel.setLocation(pos[3], studentspanel.getY());
+		notificationpanel.setLocation(pos[3], notificationpanel.getY());
 		
 	}
 
@@ -251,18 +279,18 @@ public class HomePanel extends JPanel implements ActionListener {
 		this();
 		totalfaculitieslabel.setText(new FacultyData().getFaculaty(s.getCourceCode(), s.getSemorYear()) + "");
 		totalstudentlabel.setText(new StudentData().getTotalStudentInCource(s.getCourceCode(), s.getSemorYear()) + "");
-		coursespanel.setVisible(false);
 		
-		coursepanel.setLocation(pos[0], subjectpanel.getY());
-		coursenamelabel.setText(new CourceData().getcourcename(s.getCourceCode()) + "");
+		totalnotificationlabel.setText(""+new NotificationData().getUnreadNotification(s.getUserId()+"", "Student", s.getCourceCode(), s.getSemorYear(),s.getAdmissionDate()));
+		coursespanel.setVisible(false);
+		notificationpanel.setVisible(true);
 		welcomelabel.setText("Welcome " +s.getFullName());
 		totallectureslabel.setText(new SubjectData().getTotalSubjectinCource(s.getCourceCode(), s.getSemorYear()) + "");
+		studentspanel.setLocation(pos[0], studentspanel.getY());
 		faculitiespanel.setLocation(pos[1], faculitiespanel.getY());
 		subjectpanel.setLocation(pos[2], subjectpanel.getY());
-		studentspanel.setLocation(pos[3], studentspanel.getY());
-		
-		
+		notificationpanel.setLocation(pos[3], notificationpanel.getY());
 	}
+
 
 	public void setLastLogin(String lastlogin) {
 		if (lastlogin == null || lastlogin.isEmpty()) {

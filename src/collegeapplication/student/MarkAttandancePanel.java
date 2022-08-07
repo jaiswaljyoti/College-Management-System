@@ -37,6 +37,9 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
 import collegeapplication.admin.AdminMain;
+import collegeapplication.common.Notification;
+import collegeapplication.common.NotificationData;
+import collegeapplication.common.TimeUtil;
 import collegeapplication.cource.CourceData;
 import collegeapplication.faculty.FacultyMain;
 import collegeapplication.subject.SubjectData;
@@ -483,6 +486,15 @@ public class MarkAttandancePanel extends JPanel implements ActionListener {
 		}
 		if(result==1)
 		{
+			Notification n=new Notification();
+			n.setUserProfile("Student");
+			n.setUserId("Admin");
+			n.setCourceCode(a.getCourceCode());
+			n.setSemorYear(a.getSemorYear());
+			n.setTitle("Attandance");
+			n.setMessage("Your "+new SubjectData().getSubjectName(a.getSubjectCode())+" subject attandance on "+a.getAttandanceDate()+" is updated.");
+			n.setTime(TimeUtil.getCurrentTime());
+			new NotificationData().addNotification(n);
 			JOptionPane.showMessageDialog(null, "Attandance Submitted");
 			scrollPane.setVisible(false);
 			submitbutton.setVisible(false);
